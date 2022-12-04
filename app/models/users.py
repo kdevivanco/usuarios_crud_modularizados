@@ -49,7 +49,6 @@ class User:
         }
         results = connectToMySQL('usuarios_cr').query_db(query,data)
         
-        print(results)
         
         return results #esto lo saca de la lista para retornar solo el dict.
 
@@ -72,7 +71,6 @@ class User:
             }
         
         results = connectToMySQL('usuarios_cr').query_db(query,data)
-        print(data)
 
         return (data)
 
@@ -88,6 +86,5 @@ class User:
         }
 
         results = connectToMySQL('usuarios_cr').query_db(query,data)
-        print(data)
 
         return True

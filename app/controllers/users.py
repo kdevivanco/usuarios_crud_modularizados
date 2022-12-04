@@ -44,7 +44,6 @@ def edit_user(id):
 
 @users.route('/user/<id>/delete')
 def delete_user(id):
-    
     deleted = User.delete_user(id)
     
     return redirect('/')
