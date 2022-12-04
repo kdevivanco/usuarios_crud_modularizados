@@ -34,21 +34,21 @@
                     <td class="column-flex">
                         <a href="/user/{{user.id}}">Show user</a>
                         <a href="/user/{{user.id}}/edit">Edit</a>
-                        <button type="button" class="btn-link" id="liveToastBtn" onclick="showToast()">Delete</button>                        
+                        <button type="button" class="btn-link" id="{{user.id}}" onclick="showToast(this)">Delete</button>                        
                     </td>
                 </tr>
+                {%endfor%}
                 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
                         <strong class="me-auto">ALERT</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        Are you sure you want to delete user {{user.first_name}} {{user.last_name}}?<br>
-                        <a type="button" class="btn btn-success" href="/user/{{user.id}}/delete">YES</a>
+                        Are you sure you want to delete user ?<br>
+                        <a type="button" id="yesbtn" class="btn btn-success" href="#">YES</a>
                         <button type="button" class="btn btn-danger" onclick="hideToast()">NO</button>
                     </div>
                 </div>
-                {%endfor%}
             </tbody>
         </table>
 
@@ -66,9 +66,13 @@
 
     <script>
         toaster = document.querySelectorAll(".toast")
-
-        function showToast(){
+        yesbtn = document.getElementById("yesbtn")
+        function showToast(e){
+            console.log(e.id)
             toaster[0].classList.add("show")
+            urlforbtn = "/user/" + e.id + '/delete'
+            yesbtn.href = urlforbtn
+
         }
         function hideToast(){
             toaster[0].classList.remove("show")
