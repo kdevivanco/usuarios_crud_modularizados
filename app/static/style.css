@@ -1,0 +1,36 @@
+.table{
+    width: 50rem;
+}
+
+
+.form-cont{
+    background-color: #212529;
+    padding: 3rem;
+    color: white;
+    width: 33rem;
+}
+
+.column-flex{
+    display: flex;
+    justify-content: space-around;
+}
+
+.disp{
+    display: none;
+}
+
+.toast{
+    position: fixed;
+    top: 30vh;
+    left: 50vw;
+}
+
+.btn-link{
+    background-color: transparent;
+    color: #0b6cfa;
+    text-decoration: underline;
+    border: none;
+}
+.btn-link, a{
+    font-size: 1.3rem;
+}

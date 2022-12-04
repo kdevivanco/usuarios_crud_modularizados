@@ -1,0 +1,14 @@
+{% extends 'create.html' %}
+
+{% block action %}
+    <form class="form-cont" action="/user/{{id}}/edit" method="POST">
+
+        <h2>
+            Edit user
+        </h2>
+{% endblock %}
+
+{% block submit %}
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/user/{{id}}">Show user</a>
+{% endblock %}

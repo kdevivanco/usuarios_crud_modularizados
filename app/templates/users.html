@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="background-color: lightgray;">
+    <nav class="navbar bg-dark mb-4">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1 text-light">Navbar</span>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>All Users</h1>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td class="column-flex">
+                        <a href="/user/{{user.id}}">Show user</a>
+                        <a href="/user/{{user.id}}/edit">Edit</a>
+                        <button type="button" class="btn-link" id="liveToastBtn" onclick="showToast()">Delete</button>                        
+                    </td>
+                </tr>
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">ALERT</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        Are you sure you want to delete user {{user.first_name}} {{user.last_name}}?<br>
+                        <a type="button" class="btn btn-success" href="/user/{{user.id}}/delete">YES</a>
+                        <button type="button" class="btn btn-danger" onclick="hideToast()">NO</button>
+                    </div>
+                </div>
+                {%endfor%}
+            </tbody>
+        </table>
+
+    <main role="main">
+        {% block main %}
+            <a href="/create">Add a new user</a>
+        {% endblock %}
+    </main>
+
+    
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+    <script>
+        toaster = document.querySelectorAll(".toast")
+
+        function showToast(){
+            toaster[0].classList.add("show")
+        }
+        function hideToast(){
+            toaster[0].classList.remove("show")
+        }
+    </script>
+</body>
+</html>
